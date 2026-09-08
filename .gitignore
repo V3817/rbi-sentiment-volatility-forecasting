@@ -1,0 +1,11 @@
+# ignore data files (too big for GitHub)
+data/
+*.csv
+*.xlsx
+
+# we have to ignore Python venv
+venv/
+.env
+
+# ignore temporary Jupyter files
+.ipynb_checkpoints/

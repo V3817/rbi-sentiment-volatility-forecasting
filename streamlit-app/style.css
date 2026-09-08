@@ -1,0 +1,515 @@
+/* ===== Bloomberg Lite — Dark Quant Terminal ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* ---------- Foundation ---------- */
+:root {
+    --bg: #0D0F14;
+    --surface: #151821;
+    --surface-raise: #1C1F2B;
+    --border: #2A2D3A;
+    --border-light: #353849;
+    --text-primary: #E8ECF1;
+    --text-secondary: #8B8FA3;
+    --text-muted: #5C6076;
+    --accent: #00D4AA;
+    --accent-dim: rgba(0, 212, 170, 0.12);
+    --accent-hover: #00E8BB;
+    --cyan: #00B4D8;
+    --green: #00E676;
+    --green-dim: rgba(0, 230, 118, 0.10);
+    --orange: #FFAB40;
+    --orange-dim: rgba(255, 171, 64, 0.10);
+    --red: #FF5252;
+    --red-dim: rgba(255, 82, 82, 0.10);
+    --radius: 10px;
+    --radius-sm: 6px;
+    --shadow: 0 2px 12px rgba(0, 0, 0, 0.40);
+    --mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ---------- App Shell ---------- */
+.stApp {
+    background-color: var(--bg) !important;
+    font-family: var(--sans) !important;
+    color: var(--text-primary) !important;
+    font-size: 0.875rem !important;
+    /* 14px base, down from 16px */
+}
+
+.block-container {
+    padding-top: 1.5rem !important;
+    padding-bottom: 2rem !important;
+    max-width: 1280px !important;
+}
+
+/* ---------- Sidebar ---------- */
+section[data-testid="stSidebar"] {
+    background-color: var(--surface) !important;
+    border-right: 1px solid var(--border) !important;
+}
+
+section[data-testid="stSidebar"] .block-container {
+    padding-top: 1.5rem !important;
+}
+
+section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
+section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] span {
+    color: var(--text-primary) !important;
+}
+
+section[data-testid="stSidebar"] h2 {
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    color: var(--text-secondary) !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding-bottom: 8px !important;
+}
+
+/* Sidebar metric values — bright & prominent */
+section[data-testid="stSidebar"] div[data-testid="stMetricValue"] {
+    color: #FFFFFF !important;
+}
+
+section[data-testid="stSidebar"] div[data-testid="stMetricLabel"] p {
+    color: var(--text-secondary) !important;
+}
+
+section[data-testid="stSidebar"] div[data-testid="stMetricDelta"] {
+    color: var(--accent) !important;
+}
+
+/* ---------- Metric Cards (Terminal Style) ---------- */
+div[data-testid="stMetric"] {
+    background: var(--surface-raise);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px !important;
+}
+
+div[data-testid="stMetricLabel"] p {
+    font-family: var(--sans) !important;
+    font-size: 0.65rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: var(--text-muted) !important;
+}
+
+div[data-testid="stMetricValue"] {
+    font-family: var(--mono) !important;
+    font-size: 1.6rem !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+}
+
+div[data-testid="stMetricDelta"] {
+    font-family: var(--mono) !important;
+    font-size: 0.75rem !important;
+}
+
+/* Delta colors — green up, red down */
+div[data-testid="stMetricDelta"] svg {
+    display: none;
+}
+
+div[data-testid="stMetricDelta"][style*="color: rgb(9, 171, 59)"],
+div[data-testid="stMetricDelta"] span[style*="color: rgb(9, 171, 59)"] {
+    color: var(--green) !important;
+}
+
+/* ---------- Typography ---------- */
+h1 {
+    font-family: var(--sans) !important;
+    font-weight: 700 !important;
+    font-size: 1.8rem !important;
+    letter-spacing: -0.03em !important;
+    color: var(--text-primary) !important;
+}
+
+h2,
+[data-testid="stSubheader"] {
+    font-family: var(--sans) !important;
+    font-weight: 400 !important;
+    font-size: 1rem !important;
+    color: var(--text-secondary) !important;
+}
+
+h3 {
+    font-family: var(--sans) !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    color: var(--accent) !important;
+    letter-spacing: -0.01em !important;
+}
+
+/* ---------- Primary Button ---------- */
+.stButton>button {
+    background-color: var(--accent) !important;
+    color: #0D0F14 !important;
+    border: none !important;
+    border-radius: var(--radius) !important;
+    font-family: var(--sans) !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    padding: 0.7rem 1.5rem !important;
+    width: 100%;
+    transition: all 0.15s ease !important;
+    box-shadow: 0 0 20px rgba(0, 212, 170, 0.15) !important;
+}
+
+.stButton>button:hover {
+    background-color: var(--accent-hover) !important;
+    box-shadow: 0 0 30px rgba(0, 212, 170, 0.3) !important;
+    transform: translateY(-1px);
+}
+
+.stButton>button:active {
+    transform: translateY(0);
+}
+
+/* ---------- Text Area ---------- */
+textarea {
+    background-color: var(--surface) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    font-family: var(--sans) !important;
+    font-size: 0.88rem !important;
+    padding: 16px !important;
+    transition: border-color 0.2s ease !important;
+}
+
+textarea:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 2px var(--accent-dim) !important;
+}
+
+textarea::placeholder {
+    color: var(--text-muted) !important;
+}
+
+/* ---------- Select Box ---------- */
+div[data-testid="stSelectbox"]>div>div {
+    background-color: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Dropdown list styling */
+div[data-testid="stSelectbox"] ul {
+    background-color: var(--surface-raise) !important;
+}
+
+/* ---------- Divider ---------- */
+hr {
+    border-color: var(--border) !important;
+    opacity: 0.6 !important;
+}
+
+/* ---------- Captions ---------- */
+.stCaption,
+div[data-testid="stCaptionContainer"] p {
+    color: var(--text-muted) !important;
+    font-size: 0.72rem !important;
+    font-family: var(--mono) !important;
+}
+
+/* ---------- Spinner ---------- */
+.stSpinner>div {
+    border-top-color: var(--accent) !important;
+}
+
+/* ---------- Plotly Chart Container ---------- */
+div[data-testid="stPlotlyChart"] {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+}
+
+/* ---------- Dataframe ---------- */
+div[data-testid="stDataFrame"] {
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+div[data-testid="stDataFrame"] table {
+    font-family: var(--mono) !important;
+    font-size: 0.8rem !important;
+}
+
+/* ---------- Warning Alert ---------- */
+div[data-testid="stAlert"] {
+    background-color: var(--surface-raise) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    color: var(--text-primary) !important;
+}
+
+div[data-testid="stAlert"] p {
+    color: var(--text-secondary) !important;
+    font-size: 0.85rem !important;
+}
+
+/* ---------- Hide Chrome ---------- */
+#MainMenu {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
+
+header[data-testid="stHeader"] {
+    background: var(--bg) !important;
+    backdrop-filter: none !important;
+}
+
+/* ---------- Expander (Methodology) ---------- */
+div[data-testid="stExpander"] {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+div[data-testid="stExpander"] summary {
+    font-family: var(--sans) !important;
+    font-weight: 600 !important;
+    font-size: 0.88rem !important;
+    color: var(--text-primary) !important;
+    background: var(--surface-raise) !important;
+    padding: 14px 20px !important;
+}
+
+div[data-testid="stExpander"] summary:hover {
+    color: var(--accent) !important;
+    background: var(--border) !important;
+}
+
+div[data-testid="stExpander"] summary span {
+    color: var(--text-primary) !important;
+}
+
+div[data-testid="stExpander"] details[open] summary {
+    background: var(--surface-raise) !important;
+    border-bottom: 1px solid var(--border);
+}
+
+div[data-testid="stExpander"] div[data-testid="stExpanderContent"] {
+    padding: 0 20px 20px !important;
+    background: var(--surface) !important;
+}
+
+/* ---------- Methodology cards ---------- */
+.method-card {
+    background: var(--surface-raise);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+}
+
+.method-card h4 {
+    margin: 0 0 8px 0;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.method-card p,
+.method-card li {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0;
+}
+
+.method-card code {
+    background: rgba(0, 212, 170, 0.1);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-family: var(--mono);
+    color: var(--accent);
+}
+
+.pipeline-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.step-num {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0D0F14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+    font-family: var(--mono);
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h4 {
+    margin: 0 0 4px 0;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.step-content p {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.step-content a {
+    color: var(--cyan) !important;
+    text-decoration: none;
+}
+
+.step-content a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Results Cards ---------- */
+.result-card {
+    background: var(--surface-raise);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    min-height: 180px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.result-card.card-green::before {
+    background: var(--green);
+}
+
+.result-card.card-orange::before {
+    background: var(--orange);
+}
+
+.result-card.card-red::before {
+    background: var(--red);
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 18px;
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    flex: 1 1 40%;
+    text-align: left;
+}
+
+.stat-value {
+    font-family: var(--mono);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    flex: 1 1 60%;
+    text-align: right;
+    letter-spacing: 0.03em;
+}
+
+.risk-badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.risk-badge.low {
+    background: var(--green-dim);
+    color: var(--green);
+    border: 1px solid var(--green);
+}
+
+.risk-badge.moderate {
+    background: var(--orange-dim);
+    color: var(--orange);
+    border: 1px solid var(--orange);
+}
+
+.risk-badge.high {
+    background: var(--red-dim);
+    color: var(--red);
+    border: 1px solid var(--red);
+}
+
+.prob-big {
+    font-family: var(--mono);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: 8px 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 3.2em;
+}
+
+.prob-big.low {
+    color: var(--green);
+}
+
+.prob-big.moderate {
+    color: var(--orange);
+}
+
+.prob-big.high {
+    color: var(--red);
+}
